@@ -5,10 +5,17 @@ editor: visual
 ---
 
 ```{r}
-Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+Data <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
 View(Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019)
 ```
 
 ```{r}
 library(readr)
+```
+
+```{r}
+library(ggplot2)
+ggplot(data=Data, aes(x=Year, y= 'Incident Recorded', group= 1))+
+  geom_point() +
+  labs(x = "Year", title = "Incidents Recorded Over Years")
 ```
