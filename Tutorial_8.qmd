@@ -5,6 +5,7 @@ editor: visual
 ---
 
 ```{r}
+
 library(readr)
 library(ggplot2)
 library(tidyverse)
@@ -13,6 +14,7 @@ library(tidyverse)
 
 ```{r}
 Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+
 View(Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019)
 ```
 
@@ -38,4 +40,10 @@ Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 %>%
 
 
 
+```{r}
+library(ggplot2)
+ggplot(data=Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019, aes(x=Year, y= 'Incident Recorded', group= 1))+
+  geom_point() +
+  labs(x = "Year", title = "Incidents Recorded Over Years")
+```
 
