@@ -5,17 +5,31 @@ editor: visual
 ---
 
 ```{r}
-Data <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+
+library(readr)
+library(tidyverse)
+```
+
+```{r}
+Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+
 View(Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019)
 ```
 
 ```{r}
-library(readr)
+Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 %>%
+  group_by(Year) %>%
+  summarise(count = sum(as.integer(`Incidents Recorded`), na.rm = TRUE)) %>%
+  ggplot() +
+  geom_col(aes(x = Year, y = count), position = "dodge") +
+  ggtitle(" Year wise Incidents counts ") +
+  scale_fill_brewer(palette = "Dark2") + 
+  theme_bw(base_size = 12)
 ```
 
 ```{r}
 library(ggplot2)
-ggplot(data=Data, aes(x=Year, y= 'Incident Recorded', group= 1))+
+ggplot(data=Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019, aes(x=Year, y= 'Incident Recorded', group= 1))+
   geom_point() +
   labs(x = "Year", title = "Incidents Recorded Over Years")
 ```
